@@ -1,181 +1,226 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piyush Warole | Portfolio</title>
-  <meta name="description" content="Portfolio of Piyush Warole">
-  <link rel="icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimeSoles - Luxury Sneaker Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      plugins: [window.daisyui],
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FFD700',
+            dark: '#121212',
+          },
+        },
+      },
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/daisyui"></script>
   <style>
-    #spinner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: white;
+    .cart-sidebar {
+      transition: right 0.3s ease-in-out;
     }
-    .hidden { display: none !important; }
   </style>
 </head>
-<body class="font-sans">
+<body class="bg-dark text-white font-sans">
 
-  <!-- Spinner -->
-  <div id="spinner">
-    <span class="loading loading-spinner loading-lg text-pink-500"></span>
+  <!-- Opening Landing Page -->
+<section class="relative h-screen bg-black text-white overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('hero-bg.jpg');"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-primary drop-shadow-lg">Welcome to PrimeSoles</h1>
+    <p class="mt-6 text-lg md:text-2xl text-gray-300 max-w-xl mx-auto">Home to the world's most luxurious sneakers, curated for the elite.</p>
+    <a href="#products" class="mt-8 inline-block bg-primary text-black font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300">
+      Explore Collection
+    </a>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>
+
+  <!-- Header/Navbar -->
+ 
+  </header>
+  <div id="mobile-menu" class="md:hidden hidden p-4 space-y-2 bg-black">
+    <a href="#" class="block hover:text-primary">Home</a>
+    <a href="#products" class="block hover:text-primary">Products</a>
+    <button onclick="toggleCart()" class="hover:text-primary">Cart (<span id="cart-count-mobile">0</span>)</button>
   </div>
 
-  <!-- Main Content -->
-  <main id="main-content" class="hidden">
+ 
+  <!-- Product Grid -->
+<section id="products" class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-    <!-- Navbar -->
-    <div class="navbar bg-gradient-to-r from-pink-500 to-purple-600 text-white fixed top-0 z-50 w-full">
-      <div class="container mx-auto">
-        <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl">Piyush Warole</a>
-        </div>
-        <div class="flex-none">
-          <ul class="menu menu-horizontal px-1 hidden md:flex">
-            <li><a href="#welcome">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#goals">Goals</a></li>
-            <li><a href="#personal">Personal</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+  <!-- Product 1 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="nikeshoxride.jpg" alt="Nike Shox Ride 2" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Nike Shox Ride 2</h3>
+    <p class="text-primary">MRP : ₹18,395.00</p>
+    <button onclick="addToCart('Nike Shox Ride 2', 18395)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="jordanretro4.jpg" alt="Air Jordan Retro 4" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Air Jordan Retro 4</h3>
+    <p class="text-primary">MRP : ₹22,499.00</p>
+    <button onclick="addToCart('Air Jordan Retro 4', 22499)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="gucci1.jpg" alt="Gucci Re-Web sneaker" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Gucci Re-Web </h3>
+    <p class="text-primary">MRP : ₹90,000.00</p>
+    <button onclick="addToCart('Gucci Re-Web sneaker', 90000)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 4 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="balenciaga.jpg" alt="Balenciaga Triple S" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Balenciaga Triple S</h3>
+    <p class="text-primary">MRP : ₹94,999.00</p>
+    <button onclick="addToCart('Balenciaga Triple S', 94999)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 5 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="airmax.jpg" alt="Nike Air Max 270" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Nike Air Max D8</h3>
+    <p class="text-primary">MRP : ₹17,495.00</p>
+    <button onclick="addToCart('Nike Air Max 270', 17495)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 6 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="adidas.jpg" alt="Adidas Ultraboost 22" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Adidas Ultraboost 22</h3>
+    <p class="text-primary">MRP : ₹25,000.00</p>
+    <button onclick="addToCart('Adidas Ultraboost 22', 25000)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 7 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="fendiflow.jpg.png" alt="Fendi Flow" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Fendi Flow</h3>
+    <p class="text-primary">MRP : ₹84,000.00</p>
+    <button onclick="addToCart('Fendi Flow', 84000)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+
+  <!-- Product 8 -->
+  <div class="bg-gray-900 p-4 rounded-lg hover:shadow-lg hover:scale-105 transition-transform">
+    <img src="dior.jpg" alt="Dior B23" class="w-full h-48 object-cover rounded" />
+    <h3 class="mt-2 text-lg font-semibold text-white">Dior B23</h3>
+    <p class="text-primary">MRP : ₹1,09,999.00</p>
+    <button onclick="addToCart('Dior B23', 109999)" class="mt-2 bg-primary text-black px-4 py-1 rounded hover:opacity-90">Add to Cart</button>
+  </div>
+     
+  </section>
+
+  <!-- Cart Sidebar -->
+  <div id="cart" class="fixed top-0 right-[-400px] w-80 h-full bg-gray-950 p-6 cart-sidebar z-50">
+    <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+    <div id="cart-items" class="space-y-4"></div>
+    <p class="mt-4 font-semibold">Total: $<span id="cart-total">0</span></p>
+    <button class="mt-4 w-full bg-primary text-black py-2 rounded hover:opacity-90">Checkout</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-20 p-6 text-center border-t border-gray-700 text-sm">
+    <p>© 2025 PrimeSoles. All rights reserved.</p>
+    <div class="mt-2 space-x-4">
+      <a href="#" class="hover:text-primary">About</a>
+      <a href="#" class="hover:text-primary">Contact</a>
+      <a href="#" class="hover:text-primary">Terms</a>
     </div>
+  </footer>
 
-    <!-- Welcome Section -->
-    <section id="welcome" class="pt-32 p-8 text-center bg-base-200 min-h-[80vh]">
-      <img src="piy.jpg" alt="Piyush Warole" class="mx-auto rounded-full w-32 h-32 shadow mb-4" loading="lazy">
-      <h1 class="text-4xl font-bold text-pink-700">Welcome to My Portfolio!</h1>
-      <p class="text-lg text-gray-700">Excited to share my journey with you.</p>
-      <video controls class="mx-auto mt-4 rounded shadow-md w-full max-w-md">
-        <source src="f1vdo.mp4" type="video/mp4">
-      </video>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="p-8 bg-white">
-      <div class="card shadow-lg p-6">
-        <h2 class="card-title text-3xl text-pink-600">About Me</h2>
-        <ul class="mt-4 space-y-2 text-lg">
-          <li><strong>Name:</strong> Piyush Warole</li>
-          <li><strong>Location:</strong> Dahanu, Palghar</li>
-          <li><strong>Education:</strong> B.Tech in Electronics & Computer Science</li>
-          <li><strong>Languages:</strong> English, Hindi, Marathi</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Achievements -->
-    <section id="achievements" class="p-8 bg-base-200">
-      <div class="card shadow-lg p-6">
-        <h2 class="card-title text-3xl text-purple-600">Achievements</h2>
-        <ul class="mt-4 list-disc pl-5 text-lg">
-          <li>Top 10 in Hackathon 2024</li>
-          <li>3rd Place - College Project Expo</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Goals -->
-    <section id="goals" class="p-8 bg-white">
-      <div class="card shadow-lg p-6">
-        <h2 class="card-title text-3xl text-blue-600">Future Goals</h2>
-        <p class="text-lg mt-4">To become a tech entrepreneur focused on education and sustainability.</p>
-      </div>
-    </section>
-
-    <!-- Testimonials Carousel using DaisyUI -->
-    <section id="testimonials" class="p-8 bg-base-200">
-      <h2 class="text-3xl font-semibold text-center text-green-600 mb-6">Testimonials</h2>
-      <div class="carousel w-full max-w-3xl mx-auto">
-        <div id="slide1" class="carousel-item relative w-full">
-          <div class="card w-full bg-white shadow-xl p-6">
-            <p>"Piyush is a dedicated learner and a great team player!" – Mentor</p>
-          </div>
-          <a href="#slide3" class="btn btn-circle absolute left-0 top-1/2 transform -translate-y-1/2">❮</a>
-          <a href="#slide2" class="btn btn-circle absolute right-0 top-1/2 transform -translate-y-1/2">❯</a>
-        </div>
-        <div id="slide2" class="carousel-item relative w-full">
-          <div class="card w-full bg-white shadow-xl p-6">
-            <p>"Creative, curious, and committed!" – Professor</p>
-          </div>
-          <a href="#slide1" class="btn btn-circle absolute left-0 top-1/2 transform -translate-y-1/2">❮</a>
-          <a href="#slide3" class="btn btn-circle absolute right-0 top-1/2 transform -translate-y-1/2">❯</a>
-        </div>
-        <div id="slide3" class="carousel-item relative w-full">
-          <div class="card w-full bg-white shadow-xl p-6">
-            <p>"Delivers quality work and inspires peers." – Colleague</p>
-          </div>
-          <a href="#slide2" class="btn btn-circle absolute left-0 top-1/2 transform -translate-y-1/2">❮</a>
-          <a href="#slide1" class="btn btn-circle absolute right-0 top-1/2 transform -translate-y-1/2">❯</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="p-8 bg-white">
-      <div class="card shadow-lg p-6">
-        <h2 class="card-title text-3xl text-pink-600">Contact Me</h2>
-        <form action="https://formspree.io/f/xzzrwlwb" method="POST" class="form-control space-y-4 mt-4">
-          <input type="text" name="name" placeholder="Name" class="input input-bordered" required>
-          <input type="email" name="email" placeholder="Email" class="input input-bordered" required>
-          <textarea name="message" placeholder="Your message" class="textarea textarea-bordered" required></textarea>
-          <button type="submit" class="btn btn-primary">Send</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Cookie Consent -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-base-300 text-base-content p-4 flex justify-between items-center z-50">
-      <span>🍪 We use cookies for personalization and analytics.</span>
-      <button id="accept-cookies" class="btn btn-sm btn-primary">Accept</button>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer footer-center p-4 bg-gray-900 text-white">
-      <div>
-        <p>© 2025 Piyush Warole • <a href="https://linkedin.com/in/piyush-warole" class="link link-hover text-blue-400">LinkedIn</a> | <a href="https://github.com/piyush-warole" class="link link-hover text-blue-400">GitHub</a></p>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- JS for Spinner, Navbar Toggle, LocalStorage & Cookies -->
+  <!-- JavaScript Cart Logic -->
   <script>
-    window.addEventListener("load", () => {
-      document.getElementById("spinner").classList.add("hidden");
-      document.getElementById("main-content").classList.remove("hidden");
+    let cart = [];
 
-      // Load last visited section if available
-      const lastSection = localStorage.getItem("lastSection");
-      if (lastSection) location.hash = lastSection;
+    function toggleCart() {
+      const cartEl = document.getElementById('cart');
+      if (cartEl.style.right === '0px') {
+        cartEl.style.right = '-400px';
+      } else {
+        cartEl.style.right = '0px';
+      }
+    }
 
-      // Cookie consent
-      const consent = localStorage.getItem("cookieConsent");
-      if (consent) document.getElementById("cookie-banner").style.display = "none";
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
 
-      document.querySelectorAll("a[href^='#']").forEach(link => {
-        link.addEventListener("click", () => {
-          localStorage.setItem("lastSection", link.getAttribute("href"));
-        });
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartCountMobileEl = document.getElementById('cart-count-mobile');
+      const totalEl = document.getElementById('cart-total');
+
+      cartItemsEl.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center border-b border-gray-700 pb-2';
+        div.innerHTML = `
+          <span>${item.name}</span>
+          <div>
+            $${item.price} <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">X</button>
+          </div>`;
+        cartItemsEl.appendChild(div);
       });
 
-      document.getElementById("accept-cookies").addEventListener("click", () => {
-        localStorage.setItem("cookieConsent", "true");
-        document.getElementById("cookie-banner").style.display = "none";
-      });
-    });
+      cartCountEl.textContent = cart.length;
+      cartCountMobileEl.textContent = cart.length;
+      totalEl.textContent = total.toFixed(2);
+    }
   </script>
 </body>
 </html>
+<header class="fixed top-0 w-full bg-dark text-white shadow z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <div class="text-2xl font-bold text-primary">PrimeSoles</div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#" class="hover:text-primary">Home</a>
+      <a href="#products" class="hover:text-primary">Products</a>
+      <button onclick="toggleCart()" class="hover:text-primary">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+    <div class="md:hidden">
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden hidden p-4 space-y-2 bg-black">
+    <a href="#" class="block hover:text-primary">Home</a>
+    <a href="#products" class="block hover:text-primary">Products</a>
+    <button onclick="toggleCart()" class="hover:text-primary">Cart (<span id="cart-count-mobile">0</span>)</button>
+  </div>
+</header>
+<div id="cart" class="fixed top-0 right-[-400px] w-80 h-full bg-gray-950 p-6 cart-sidebar z-50 transition-all duration-300">
+  <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+  <div id="cart-items" class="space-y-4"></div>
+  <p class="mt-4 font-semibold">Total: ₹<span id="cart-total">0</span></p>
+  <button class="mt-4 w-full bg-primary text-black py-2 rounded hover:opacity-90">Checkout</button>
+</div>
+
+

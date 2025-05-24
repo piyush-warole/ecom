@@ -132,15 +132,7 @@
     <button class="mt-4 w-full bg-primary text-black py-2 rounded hover:opacity-90">Checkout</button>
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-20 p-6 text-center border-t border-gray-700 text-sm">
-    <p>© 2025 PrimeSoles. All rights reserved.</p>
-    <div class="mt-2 space-x-4">
-      <a href="#" class="hover:text-primary">About</a>
-      <a href="#" class="hover:text-primary">Contact</a>
-      <a href="#" class="hover:text-primary">Terms</a>
-    </div>
-  </footer>
+ 
 
   <!-- JavaScript Cart Logic -->
   <script>
@@ -224,3 +216,273 @@
 </div>
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PrimeSoles - Portfolio, Products, Goals, Achievements" />
+  <meta name="author" content="PrimeSoles Team" />
+  <meta property="og:title" content="PrimeSoles - Luxury Sneaker Hub" />
+  <meta property="og:image" content="link-to-your-preview-image" />
+  <meta property="og:description" content="Shop premium luxury sneakers from PrimeSoles." />
+  <meta name="theme-color" content="#121212" />
+  <link rel="icon" href="favicon.ico" />
+  <title>PrimeSoles - Luxury Sneaker Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FFD700',
+            dark: '#121212',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .cart-sidebar {
+      transition: right 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-dark text-white font-sans">
+
+ 
+
+  <!-- Product Grid -->
+  <!-- (Product section remains unchanged for brevity) -->
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+    <div class="bg-dark text-white p-8 rounded-lg w-full max-w-lg">
+      <h2 class="text-xl font-bold mb-4">Checkout</h2>
+      <form id="checkout-form" class="space-y-4">
+        <div>
+          <label class="block mb-1">Full Name</label>
+          <input type="text" required class="w-full p-2 rounded bg-gray-800 text-white">
+        </div>
+        <div>
+          <label class="block mb-1">Email</label>
+          <input type="email" required class="w-full p-2 rounded bg-gray-800 text-white">
+        </div>
+        <div>
+          <label class="block mb-1">Phone</label>
+          <input type="tel" required class="w-full p-2 rounded bg-gray-800 text-white">
+        </div>
+        <div>
+          <label class="block mb-1">Address</label>
+          <textarea required class="w-full p-2 rounded bg-gray-800 text-white"></textarea>
+        </div>
+        <div>
+          <label class="block mb-1">Delivery Option</label>
+          <select class="w-full p-2 rounded bg-gray-800 text-white">
+            <option>Standard (Free)</option>
+            <option>Express (₹499)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-1">Payment Method</label>
+          <select required class="w-full p-2 rounded bg-gray-800 text-white">
+            <option>UPI</option>
+            <option>Credit/Debit Card</option>
+            <option>Cash on Delivery</option>
+            <option>Net Banking</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-primary text-black py-2 rounded hover:opacity-90">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  
+
+  <script>
+    let cart= [];
+
+    function toggleCart() {
+      const cartEl = document.getElementById('cart');
+      cartEl.style.right = (cartEl.style.right === '0px') ? '-400px' : '0px';
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartCountMobileEl = document.getElementById('cart-count-mobile');
+      const totalEl = document.getElementById('cart-total');
+
+      cartItemsEl.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center border-b border-gray-700 pb-2';
+        div.innerHTML = `
+          <span>${item.name}</span>
+          <div>
+            ₹${item.price} <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">X</button>
+          </div>`;
+        cartItemsEl.appendChild(div);
+      });
+
+      cartCountEl.textContent = cart.length;
+      cartCountMobileEl.textContent = cart.length;
+      totalEl.textContent = total.toFixed(2);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    document.querySelector('.cart-sidebar button').addEventListener('click', () => {
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    });
+
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Order placed successfully! Thank you for shopping with PrimeSoles.");
+      cart = [];
+      updateCart();
+      document.getElementById('checkout-modal').classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PrimeSoles - Portfolio, Education, Goals, Achievements" />
+  <meta name="author" content="PrimeSoles" />
+  <meta property="og:title" content="PrimeSoles - Luxury Sneaker Hub" />
+  <meta property="og:image" content="link-to-your-preview-image" />
+  <meta property="og:description" content="Personal introduction portfolio site." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="favicon.ico" />
+  <title>PrimeSoles - Luxury Sneaker Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FFD700',
+            dark: '#121212',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .cart-sidebar {
+      transition: right 0.3s ease-in-out;
+    }
+    .modal {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body class="bg-dark text-white font-sans">
+
+
+
+
+
+<!-- Product Grid (unchanged) -->
+<section id="products" class="pt-32 pb-20 px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  <!-- Product Cards remain as you had them -->
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="bg-gray-900 text-white py-20">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl font-bold text-primary">What Our Customers Say</h2>
+  </div>
+  <div class="max-w-5xl mx-auto grid gap-8 md:grid-cols-3 px-4">
+    <div class="bg-dark p-6 rounded-lg shadow-md">
+      <p class="italic">“Absolutely stunning sneakers. Luxury feel and fast delivery!”</p>
+      <p class="mt-4 text-primary font-semibold">— Arjun R.</p>
+    </div>
+    <div class="bg-dark p-6 rounded-lg shadow-md">
+      <p class="italic">“Top-tier brands, excellent packaging. Highly recommend PrimeSoles!”</p>
+      <p class="mt-4 text-primary font-semibold">— Meera K.</p>
+    </div>
+    <div class="bg-dark p-6 rounded-lg shadow-md">
+      <p class="italic">“A seamless shopping experience with elite style.”</p>
+      <p class="mt-4 text-primary font-semibold">— Dev S.</p>
+    </div>
+  </div>
+</section>
+ <!-- Footer -->
+  <footer class="mt-20 p-6 text-center border-t border-gray-700 text-sm">
+    <p>© 2025 PrimeSoles. All rights reserved.</p>
+    <div class="mt-2 space-x-4">
+      <a href="#" class="hover:text-primary">About</a>
+      <a href="#" class="hover:text-primary">Contact</a>
+      <a href="#" class="hover:text-primary">Terms</a>
+    </div>
+  </footer>
+
+
+<!-- Checkout Modal -->
+<div id="checkoutModal" class="modal fixed inset-0 z-50 hidden items-center justify-center">
+  <div class="bg-white text-black p-8 rounded-lg max-w-lg w-full">
+    <h2 class="text-2xl font-bold mb-4">Checkout Details</h2>
+    <input class="w-full mb-3 p-2 border rounded" placeholder="Full Name" required />
+    <input class="w-full mb-3 p-2 border rounded" placeholder="Delivery Address" required />
+    <select class="w-full mb-3 p-2 border rounded" required>
+      <option selected disabled>Select Payment Method</option>
+      <option>Credit/Debit Card</option>
+      <option>UPI</option>
+      <option>Cash on Delivery</option>
+    </select>
+    <button onclick="confirmCheckout()" class="w-full bg-primary text-black py-2 mt-2 rounded hover:opacity-90">Confirm Order</button>
+    <button onclick="closeCheckoutModal()" class="mt-4 text-red-500 underline">Cancel</button>
+  </div>
+</div>
+
+<script>
+  function openCheckoutModal() {
+    document.getElementById('checkoutModal').classList.remove('hidden');
+  }
+
+  function closeCheckoutModal() {
+    document.getElementById('checkoutModal').classList.add('hidden');
+  }
+
+  function confirmCheckout() {
+    closeCheckoutModal();
+    alert('Thank you! Your order has been placed successfully.');
+    cart = [];
+    updateCart();
+    toggleCart();
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>
+
+<!-- Existing JavaScript for Cart (unchanged) -->
+</body>
+</html>
